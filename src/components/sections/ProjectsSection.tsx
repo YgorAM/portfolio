@@ -39,16 +39,10 @@ const ProjectsSection = () => {
 
         <Card className="animate-fade-in shadow-elegant">
           <CardHeader>
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <CardTitle className="text-2xl font-bold flex items-center gap-3">
-                <Code className="w-6 h-6 text-primary" />
-                {project.title}
-              </CardTitle>
-              <Button variant="outline" className="flex items-center gap-2">
-                <Github className="w-4 h-4" />
-                Ver no GitHub
-              </Button>
-            </div>
+            <CardTitle className="text-2xl font-bold flex items-center gap-3">
+              <Code className="w-6 h-6 text-primary" />
+              {project.title}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <p className="text-muted-foreground leading-relaxed text-lg">
