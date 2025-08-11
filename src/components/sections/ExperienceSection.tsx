@@ -8,7 +8,7 @@ const ExperienceSection = () => {
       title: "Auxiliar de Logística Pleno",
       company: "Venkuri Produtos Médicos",
       period: "mai/2024 – abr/2025",
-      type: "Atual",
+      type: "Recente",
       description: "Responsável por operações logísticas e gerenciamento de produtos médicos."
     },
     {
@@ -45,7 +45,7 @@ const ExperienceSection = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant={exp.type === "Atual" ? "default" : "secondary"}>
+                    <Badge variant={exp.type === "Recente" ? "default" : "secondary"}>
                       {exp.type}
                     </Badge>
                     <div className="flex items-center text-muted-foreground">
