@@ -9,8 +9,10 @@ const EducationSection = () => {
   ];
 
   const previousSubjects = [
-    "Modelagem de software",
-    "Programação de soluções computacionais"
+    "Modelagem de Software",
+    "Programação de Soluções Computacionais",
+    "Sistemas Computacionais e Segurança",
+    "Ambientes Computacionais e Conectividade"
   ];
 
   return (
@@ -70,7 +72,7 @@ const EducationSection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 mb-3">
                     <BookOpen className="w-5 h-5 text-muted-foreground" />
-                    <h4 className="font-semibold">Matérias Concluídas (1º Semestre)</h4>
+                    <h4 className="font-semibold">Disciplinas Concluídas</h4>
                   </div>
                   <div className="space-y-2">
                     {previousSubjects.map((subject, index) => (
