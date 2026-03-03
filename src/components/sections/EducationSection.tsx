@@ -4,8 +4,8 @@ import { GraduationCap, Calendar, BookOpen } from "lucide-react";
 
 const EducationSection = () => {
   const currentSubjects = [
-    "Sistemas computacionais e segurança",
-    "Ambientes computacionais e conectividade"
+    "Sistemas Distribuídos",
+    "Desenvolvimento de Aplicações Web, Mobile e Jogos com foco em Usabilidade e Experiência do Usuário"
   ];
 
   const previousSubjects = [
@@ -45,8 +45,8 @@ const EducationSection = () => {
                     </div>
                   </div>
                   <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Atualmente cursando o segundo semestre do bacharelado em Sistemas de Informação, 
-                    desenvolvendo conhecimentos em programação, banco de dados, sistemas computacionais e segurança.
+                    Atualmente cursando o terceiro semestre do Bacharelado em Sistemas de Informação, 
+                    aprofundando conhecimentos em sistemas distribuídos e desenvolvimento de aplicações multiplataforma com foco em usabilidade.
                   </p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ const EducationSection = () => {
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 mb-3">
                     <BookOpen className="w-5 h-5 text-primary" />
-                    <h4 className="font-semibold">Matérias Atuais (2º Semestre)</h4>
+                    <h4 className="font-semibold">Matérias Atuais (3º Semestre)</h4>
                   </div>
                   <div className="space-y-2">
                     {currentSubjects.map((subject, index) => (
