@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code, Database, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Code, Database, Users, ExternalLink } from "lucide-react";
 
 const MatrixHero = () => (
   <div className="relative w-full rounded-lg overflow-hidden bg-[#0d1b2a] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 min-h-[220px]">
