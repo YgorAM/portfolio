@@ -61,6 +61,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				dracula: {
+					green: 'hsl(var(--dracula-green, 135 95% 65%))',
+					pink: 'hsl(var(--dracula-pink, 326 100% 74%))',
+					cyan: 'hsl(var(--dracula-cyan, 191 97% 77%))',
+					purple: 'hsl(var(--dracula-purple, 265 89% 78%))',
+					comment: 'hsl(var(--dracula-comment, 225 27% 51%))',
 				}
 			},
 			borderRadius: {
