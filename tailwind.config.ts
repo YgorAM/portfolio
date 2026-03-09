@@ -17,6 +17,10 @@ export default {
 				'2xl': '1400px'
 			}
 		},
+		fontFamily: {
+			sans: ['var(--font-sans)', 'Segoe UI', 'Arial', 'sans-serif'],
+			mono: ['var(--font-mono)', 'Courier Prime', 'Consolas', 'monospace'],
+		},
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
