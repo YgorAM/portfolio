@@ -8,12 +8,11 @@ const Navigation = () => {
   const [activeSection, setActiveSection] = useState("");
 
   const sections = [
-    { id: "sobre", label: "Resumo" },
-    { id: "habilidades", label: "Habilidades" },
-    { id: "experiencia", label: "Experiência" },
+    { id: "inicio", label: "Início" },
+    { id: "tecnologias", label: "Tecnologias" },
     { id: "projetos", label: "Projetos" },
-    { id: "formacao", label: "Formação" },
-    { id: "certificacoes", label: "Certificações" },
+    { id: "sobre", label: "Sobre" },
+    { id: "contato", label: "Contato" },
   ];
 
   useEffect(() => {
