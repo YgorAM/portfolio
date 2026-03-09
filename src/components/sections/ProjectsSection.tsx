@@ -126,14 +126,23 @@ const ProjectsSection = () => {
           {projects.map((project, idx) => (
             <Card key={idx} className="animate-fade-in shadow-elegant overflow-hidden">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold flex items-center gap-3">
-                  <Code className="w-6 h-6 text-primary" />
-                  {project.title}
-                </CardTitle>
+                <div className="flex items-center justify-between">
+                  <CardTitle className="text-2xl font-bold flex items-center gap-3">
+                    <Code className="w-6 h-6 text-primary" />
+                    {project.title}
+                  </CardTitle>
+                  {project.link && (
+                    <Button variant="outline" size="sm" asChild>
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="gap-2">
+                        <ExternalLink className="w-4 h-4" />
+                        Acessar Site
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </CardHeader>
               <CardContent className="space-y-6">
-                {project.hasHero && <MatrixHero />}
-
+                {project.hasHero && <MatrixHero link={project.link} />}
                 <p className="text-muted-foreground leading-relaxed text-lg">
                   {project.description}
                 </p>
