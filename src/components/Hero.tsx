@@ -4,7 +4,7 @@ import { IdeCursor } from "@/components/ui/ide-window";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center section-padding bg-gradient-to-br from-background to-muted">
+    <section id="inicio" className="min-h-screen flex items-center justify-center section-padding bg-gradient-to-br from-background to-muted">
       <div className="max-w-4xl mx-auto text-center">
         <div className="animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
