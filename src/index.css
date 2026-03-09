@@ -7,31 +7,31 @@
 @layer base {
   :root {
     /* Retro IDE / Classic System Theme */
-    --background: 0 0% 91%;             /* #e8e8e8 */
-    --foreground: 0 0% 0%;              /* #000000 */
+    --background: 0 0% 91%;
+    --foreground: 0 0% 0%;
 
-    --card: 0 0% 100%;                  /* #ffffff */
-    --card-foreground: 0 0% 0%;         /* #000000 */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 0%;
 
-    --primary: 240 100% 50%;            /* #0000ff - keyword blue */
-    --primary-foreground: 0 0% 100%;    /* white */
+    --primary: 240 100% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 18% 84%;            /* #d4d0c8 - classic Win95 gray */
+    --secondary: 40 18% 84%;
     --secondary-foreground: 0 0% 0%;
 
-    --muted: 40 18% 84%;               /* #d4d0c8 */
-    --muted-foreground: 0 0% 35%;       /* dark gray */
+    --muted: 40 18% 84%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 40 18% 78%;              /* slightly darker classic gray */
+    --accent: 40 18% 78%;
     --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 80% 45%;           /* #a31515 - string red */
+    --destructive: 0 80% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 63%;                /* #a0a0a0 */
+    --border: 0 0% 63%;
     --input: 0 0% 63%;
     --ring: 240 100% 50%;
 
@@ -47,10 +47,10 @@
     --sidebar-ring: 240 100% 50%;
 
     /* Retro syntax tokens */
-    --retro-keyword: 240 100% 50%;      /* #0000ff */
-    --retro-string: 0 78% 36%;          /* #a31515 */
-    --retro-comment: 120 100% 25%;      /* #008000 */
-    --retro-titlebar: 40 18% 84%;       /* #d4d0c8 */
+    --retro-keyword: 240 100% 50%;
+    --retro-string: 0 78% 36%;
+    --retro-comment: 120 100% 25%;
+    --retro-titlebar: 40 18% 84%;
     --retro-border-light: 0 0% 85%;
     --retro-border-dark: 0 0% 45%;
 
@@ -70,7 +70,7 @@
     --background: 231 15% 18%;
     --foreground: 60 30% 96%;
 
-    --card: 232 14% 31%;
+    --card: 231 15% 18%;
     --card-foreground: 60 30% 96%;
 
     --popover: 232 14% 31%;
@@ -95,7 +95,7 @@
     --input: 232 14% 36%;
     --ring: 265 89% 78%;
 
-    --radius: 0.5rem;
+    --radius: 0.125rem;
 
     /* Dracula accent tokens */
     --dracula-green: 135 95% 65%;
@@ -114,7 +114,7 @@
     --sidebar-ring: 265 89% 78%;
 
     --gradient-primary: linear-gradient(135deg, hsl(265 89% 78%), hsl(326 100% 74%));
-    --shadow-elegant: 0 10px 30px -10px hsl(265 89% 78% / 0.15);
+    --shadow-elegant: 0 2px 8px -2px hsl(265 89% 78% / 0.2);
 
     --font-mono: 'Courier Prime', 'Consolas', 'Courier New', monospace;
     --font-sans: 'Segoe UI', 'Arial', sans-serif;
@@ -134,7 +134,7 @@
     scroll-behavior: smooth;
   }
 
-  /* Retro scrollbars (light mode only) */
+  /* Retro scrollbars (light mode) */
   :root:not(.dark) ::-webkit-scrollbar {
     width: 16px;
     height: 16px;
@@ -155,6 +155,28 @@
     border: 1px outset hsl(0 0% 85%);
     height: 16px;
     width: 16px;
+  }
+
+  /* Dark mode retro scrollbars */
+  .dark ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: hsl(231 15% 15%);
+    border: 1px solid hsl(232 14% 36%);
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(232 14% 31%);
+    border: 1px solid hsl(232 14% 40%);
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: hsl(232 14% 38%);
+  }
+
+  /* Mono font for all headings in both themes */
+  h1, h2, h3, h4 {
+    font-family: var(--font-mono);
   }
 }
 
@@ -191,7 +213,7 @@
     @apply py-16 px-4 sm:px-6 lg:px-8;
   }
 
-  /* Retro 3D button effect (light mode) */
+  /* ===== RETRO 3D EFFECTS (light mode) ===== */
   :root:not(.dark) .retro-3d,
   :root:not(.dark) [data-slot="badge"],
   :root:not(.dark) button:not([data-no-retro]) {
@@ -203,24 +225,146 @@
   :root:not(.dark) .retro-3d:active {
     border-style: inset;
   }
-
-  /* Retro card styling (light mode) */
   :root:not(.dark) .rounded-lg {
     border-radius: 0.125rem;
   }
-
-  /* Mono font for titles in light mode */
-  :root:not(.dark) h1,
-  :root:not(.dark) h2,
-  :root:not(.dark) h3,
-  :root:not(.dark) h4 {
-    font-family: var(--font-mono);
-  }
-
-  /* Section title bar styling (light mode) */
   :root:not(.dark) section > div > div:first-child {
     background: var(--gradient-primary);
     border: 1px solid hsl(0 0% 63%);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ===== DARK MODE RETRO IDE EFFECTS ===== */
+
+  /* Dark mode: sharp corners like an IDE */
+  .dark .rounded-lg {
+    border-radius: 0.125rem;
+  }
+
+  /* Dark mode: 3D bevel buttons with Dracula colors */
+  .dark [data-slot="badge"],
+  .dark button:not([data-no-retro]) {
+    border-style: outset;
+    border-width: 2px;
+    border-color: hsl(232 14% 40%);
+  }
+  .dark button:active:not([data-no-retro]) {
+    border-style: inset;
+  }
+
+  /* IDE Window title bar */
+  .ide-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.375rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-bottom: 1px solid hsl(var(--border));
+    user-select: none;
+  }
+  :root:not(.dark) .ide-titlebar {
+    background: hsl(40 18% 84%);
+    color: hsl(0 0% 0%);
+  }
+  .dark .ide-titlebar {
+    background: hsl(225 27% 51%);
+    color: hsl(60 30% 96%);
+  }
+
+  /* Window control buttons (visual only) */
+  .ide-window-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .ide-window-btn {
+    width: 14px;
+    height: 14px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    line-height: 1;
+    font-family: var(--font-mono);
+  }
+  :root:not(.dark) .ide-window-btn {
+    background: hsl(40 18% 84%);
+    border-color: hsl(0 0% 63%);
+    border-style: outset;
+    color: hsl(0 0% 0%);
+  }
+  .dark .ide-window-btn {
+    background: hsl(232 14% 31%);
+    border-color: hsl(232 14% 45%);
+    color: hsl(60 30% 96%);
+  }
+
+  /* IDE Window frame */
+  .ide-window {
+    border: 2px solid;
+    overflow: hidden;
+  }
+  :root:not(.dark) .ide-window {
+    border-color: hsl(0 0% 63%);
+    background: hsl(0 0% 100%);
+  }
+  .dark .ide-window {
+    border-color: hsl(232 14% 36%);
+    background: hsl(231 15% 18%);
+  }
+
+  /* Line numbers gutter */
+  .ide-line-numbers {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+    min-width: 2.5rem;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.6rem;
+    user-select: none;
+    border-right: 1px solid hsl(var(--border));
+  }
+  :root:not(.dark) .ide-line-numbers {
+    background: hsl(40 18% 90%);
+    color: hsl(0 0% 50%);
+  }
+  .dark .ide-line-numbers {
+    background: hsl(231 15% 15%);
+    color: hsl(225 27% 51%);
+  }
+  .ide-line-numbers span {
+    padding-right: 0.5rem;
+  }
+
+  /* Blinking cursor */
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  .ide-cursor {
+    display: inline-block;
+    animation: blink-cursor 1s step-end infinite;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    margin-left: 0.25rem;
+  }
+  :root:not(.dark) .ide-cursor {
+    color: hsl(0 0% 0%);
+  }
+  .dark .ide-cursor {
+    color: hsl(135 95% 65%);
+  }
+
+  /* Dark mode section header bar */
+  .dark section > div > div:first-child {
+    background: hsl(232 14% 25%);
+    border: 1px solid hsl(232 14% 36%);
     padding: 0.75rem 1rem;
     margin-bottom: 1.5rem;
   }

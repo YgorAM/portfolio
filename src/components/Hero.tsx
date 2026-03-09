@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, MapPin, Mail, Phone } from "lucide-react";
+import { IdeCursor } from "@/components/ui/ide-window";
 
 const Hero = () => {
   return (
@@ -8,9 +9,10 @@ const Hero = () => {
         <div className="animate-fade-in">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             <span className="text-gradient">Ygor Amaral</span>
+            <IdeCursor />
           </h1>
           
-          <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
+          <h2 className="text-xl md:text-2xl text-muted-foreground mb-6 font-mono">
             Programador Back-End Júnior | Java | Banco de Dados
           </h2>
           
@@ -22,13 +24,13 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
             <div className="flex items-center text-muted-foreground">
               <Phone className="w-4 h-4 mr-2" />
-              <a href="tel:+5511989660240" className="hover:text-primary transition-smooth">
+              <a href="tel:+5511989660240" className="hover:text-primary transition-smooth font-mono text-sm">
                 (11) 98966-0240
               </a>
             </div>
             <div className="flex items-center text-muted-foreground">
               <Mail className="w-4 h-4 mr-2" />
-              <a href="mailto:ygoramaral30@gmail.com" className="hover:text-primary transition-smooth">
+              <a href="mailto:ygoramaral30@gmail.com" className="hover:text-primary transition-smooth font-mono text-sm">
                 ygoramaral30@gmail.com
               </a>
             </div>
