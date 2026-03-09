@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Briefcase, Calendar } from "lucide-react";
+import { IdeWindow, IdeCursor } from "@/components/ui/ide-window";
 
 const ExperienceSection = () => {
   const experiences = [
@@ -26,6 +26,7 @@ const ExperienceSection = () => {
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Experiência <span className="text-gradient">Profissional</span>
+            <IdeCursor />
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Minha trajetória profissional e as experiências que moldaram meu perfil
@@ -34,31 +35,37 @@ const ExperienceSection = () => {
 
         <div className="space-y-6">
           {experiences.map((exp, index) => (
-            <Card key={index} className="animate-fade-in shadow-elegant" style={{animationDelay: `${index * 0.2}s`}}>
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                  <div className="flex items-start md:items-center gap-3 mb-2 md:mb-0">
-                    <Briefcase className="w-5 h-5 text-primary mt-1 md:mt-0" />
-                    <div>
-                      <h3 className="text-xl font-semibold">{exp.title}</h3>
-                      <p className="text-lg text-primary font-medium">{exp.company}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant={exp.type === "Recente" ? "default" : "secondary"}>
-                      {exp.type}
-                    </Badge>
-                    <div className="flex items-center text-muted-foreground">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      <span className="text-sm">{exp.period}</span>
-                    </div>
+            <IdeWindow
+              key={index}
+              title={`${exp.company.toLowerCase().replace(/\s+/g, '-')}.log`}
+              icon={<Briefcase className="w-3 h-3" />}
+              showLineNumbers
+              lineCount={4}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-3">
+                <div>
+                  <h3 className="text-xl font-semibold font-mono">{exp.title}</h3>
+                  <p className="text-lg text-primary font-medium font-mono">{exp.company}</p>
+                </div>
+                <div className="flex items-center gap-2 mt-2 md:mt-0">
+                  <Badge
+                    variant={exp.type === "Recente" ? "default" : "secondary"}
+                    className="font-mono text-xs"
+                  >
+                    {exp.type}
+                  </Badge>
+                  <div className="flex items-center text-muted-foreground font-mono text-xs">
+                    <Calendar className="w-3 h-3 mr-1" />
+                    <span>{exp.period}</span>
                   </div>
                 </div>
-                <p className="text-muted-foreground leading-relaxed ml-8 md:ml-8">
-                  {exp.description}
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+              <p className="text-muted-foreground leading-relaxed font-mono text-sm">
+                {exp.description}
+              </p>
+            </IdeWindow>
           ))}
         </div>
       </div>

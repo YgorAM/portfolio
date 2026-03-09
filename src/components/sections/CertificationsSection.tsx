@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award, Calendar, BookOpen } from "lucide-react";
+import { Award, BookOpen } from "lucide-react";
+import { IdeWindow, IdeCursor } from "@/components/ui/ide-window";
 
 const CertificationsSection = () => {
   const certifications = [
@@ -24,25 +24,13 @@ const CertificationsSection = () => {
     }
   ];
 
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "Programação":
-        return "bg-blue-500/20 text-blue-700 dark:text-blue-300";
-      case "Banco de Dados":
-        return "bg-purple-500/20 text-purple-700 dark:text-purple-300";
-      case "Qualidade":
-        return "bg-green-500/20 text-green-700 dark:text-green-300";
-      default:
-        return "bg-gray-500/20 text-gray-700 dark:text-gray-300";
-    }
-  };
-
   return (
     <section id="certificacoes" className="section-padding bg-muted/30">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="text-gradient">Certificações</span> & Cursos
+            <IdeCursor />
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Certificações que comprovam meu comprometimento com o aprendizado contínuo
@@ -51,55 +39,59 @@ const CertificationsSection = () => {
 
         <div className="grid gap-6">
           {certifications.map((cert, index) => (
-            <Card key={index} className="animate-fade-in shadow-elegant" style={{animationDelay: `${index * 0.2}s`}}>
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                  <div className="flex items-start gap-4 flex-1">
-                    <div className="p-3 rounded-lg bg-primary/20">
-                      <Award className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
-                        <h3 className="text-xl font-bold">{cert.title}</h3>
-                        <Badge className={getCategoryColor(cert.category)}>
-                          {cert.category}
-                        </Badge>
-                      </div>
-                      <p className="text-muted-foreground leading-relaxed mb-4">
-                        {cert.description}
-                      </p>
-                      <div className="flex items-center gap-2 mb-3">
-                        <BookOpen className="w-4 h-4 text-primary" />
-                        <span className="font-medium text-sm">Habilidades adquiridas:</span>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {cert.skills.map((skill, skillIndex) => (
-                          <Badge key={skillIndex} variant="secondary" className="text-xs">
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
+            <IdeWindow
+              key={index}
+              title={`certificado-${cert.category.toLowerCase().replace(/\s+/g, '-')}.cert`}
+              icon={<Award className="w-3 h-3" />}
+              className="animate-fade-in"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="flex flex-col md:flex-row md:items-start gap-4">
+                <div className="p-3 rounded-sm bg-primary/20">
+                  <Award className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 mb-2">
+                    <h3 className="text-xl font-bold font-mono">{cert.title}</h3>
+                    <Badge className="font-mono text-xs w-fit" variant="secondary">
+                      {cert.category}
+                    </Badge>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-4 font-mono text-sm">
+                    {cert.description}
+                  </p>
+                  <div className="flex items-center gap-2 mb-2">
+                    <BookOpen className="w-4 h-4 text-primary" />
+                    <span className="font-medium text-sm font-mono">Habilidades adquiridas:</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {cert.skills.map((skill, skillIndex) => (
+                      <Badge
+                        key={skillIndex}
+                        variant="secondary"
+                        className="text-xs font-mono dark:bg-secondary dark:text-dracula-green"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </IdeWindow>
           ))}
         </div>
 
         <div className="mt-8 text-center">
-          <Card className="animate-fade-in shadow-elegant">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-center gap-3 mb-2">
-                <BookOpen className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-semibold">Aprendizado Contínuo</h3>
-              </div>
-              <p className="text-muted-foreground">
-                Sempre em busca de novas certificações e cursos para aprimorar 
-                minhas habilidades técnicas e profissionais.
-              </p>
-            </CardContent>
-          </Card>
+          <IdeWindow title="status.log" className="animate-fade-in">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <BookOpen className="w-5 h-5 text-primary" />
+              <h3 className="text-lg font-semibold font-mono">Aprendizado Contínuo</h3>
+            </div>
+            <p className="text-muted-foreground font-mono text-sm">
+              Sempre em busca de novas certificações e cursos para aprimorar 
+              minhas habilidades técnicas e profissionais.
+            </p>
+          </IdeWindow>
         </div>
       </div>
     </section>
