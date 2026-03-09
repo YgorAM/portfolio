@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Monitor } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
@@ -17,10 +16,10 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sectionElements = sections.map(section => 
+      const sectionElements = sections.map(section =>
         document.getElementById(section.id)
       );
-      
+
       const currentSection = sectionElements.find(element => {
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -41,77 +40,78 @@ const Navigation = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     setIsOpen(false);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-gradient">Ygor Amaral</h1>
+    <nav className="fixed bottom-0 left-0 right-0 z-50 taskbar-bar md:top-0 md:bottom-auto">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4">
+        <div className="flex items-center h-10 gap-1">
+          {/* Start button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="taskbar-start-btn flex items-center gap-1.5 px-3 h-7 font-mono text-xs font-bold md:hidden"
+            data-no-retro
+          >
+            <Monitor className="w-4 h-4" />
+            <span>Início</span>
+          </button>
+
+          {/* Desktop taskbar buttons */}
+          <div className="hidden md:flex items-center gap-1 flex-1">
+            <button
+              onClick={() => scrollToSection("inicio")}
+              className="taskbar-start-btn flex items-center gap-1.5 px-3 h-7 font-mono text-xs font-bold"
+              data-no-retro
+            >
+              <Monitor className="w-4 h-4" />
+              <span>Início</span>
+            </button>
+
+            <div className="taskbar-divider" />
+
+            {sections.slice(1).map((section) => (
+              <button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                className={`taskbar-btn h-7 px-3 font-mono text-xs transition-smooth ${
+                  activeSection === section.id ? "taskbar-btn-active" : ""
+                }`}
+                data-no-retro
+              >
+                {section.label}
+              </button>
+            ))}
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-4">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-smooth hover:text-primary ${
-                    activeSection === section.id
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:bg-muted"
-                  }`}
-                >
-                  {section.label}
-                </button>
-              ))}
+          {/* Right side: clock area / theme toggle */}
+          <div className="ml-auto flex items-center">
+            <div className="taskbar-tray flex items-center gap-1 px-2 h-7">
               <ThemeToggle />
             </div>
           </div>
-
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle navigation menu"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <div className="md:hidden animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-background border-t border-border">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className={`block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-smooth ${
-                    activeSection === section.id
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-primary hover:bg-muted"
-                  }`}
-                >
-                  {section.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile "Start Menu" popup */}
+      {isOpen && (
+        <div className="md:hidden absolute bottom-10 left-1 taskbar-menu animate-fade-in">
+          {sections.map((section) => (
+            <button
+              key={section.id}
+              onClick={() => scrollToSection(section.id)}
+              className={`taskbar-menu-item w-full text-left px-4 py-2 font-mono text-sm ${
+                activeSection === section.id ? "taskbar-menu-item-active" : ""
+              }`}
+              data-no-retro
+            >
+              {section.label}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
