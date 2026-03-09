@@ -79,7 +79,8 @@ const Navigation = () => {
           </div>
 
           {/* Mobile Navigation Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="sm"
