@@ -1,8 +1,76 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Github, Code, Database, Users, ExternalLink } from "lucide-react";
-import matrixAcademyImg from "@/assets/matrix-academy.png";
+import { Code, Database, Users } from "lucide-react";
+
+const MatrixHero = () => (
+  <div className="relative w-full rounded-lg overflow-hidden bg-[#0d1b2a] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 min-h-[220px]">
+    {/* Left: Logo + Title */}
+    <div className="flex flex-col gap-2 z-10">
+      {/* Grid icon */}
+      <div className="flex items-center gap-2 mb-1">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          {[0, 1, 2, 3].map(r =>
+            [0, 1, 2, 3].map(c => (
+              <rect key={`${r}-${c}`} x={2 + c * 7} y={2 + r * 7} width="5" height="5" rx="1" fill="#5eead4" opacity={0.7 + Math.random() * 0.3} />
+            ))
+          )}
+        </svg>
+      </div>
+      <h3 className="text-white font-bold text-3xl md:text-4xl tracking-tight leading-tight">
+        Matrix Academy
+      </h3>
+      <p className="text-gray-300 text-sm md:text-base">
+        Aprenda Álgebra Linear de Forma Interativa
+      </p>
+    </div>
+
+    {/* Right: Vector graphic */}
+    <div className="z-10 flex-shrink-0">
+      <svg width="260" height="180" viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Grid lines */}
+        <line x1="130" y1="10" x2="130" y2="170" stroke="#1e3a4f" strokeWidth="0.5" />
+        <line x1="30" y1="110" x2="240" y2="110" stroke="#1e3a4f" strokeWidth="0.5" />
+        {/* Diagonal grid */}
+        <line x1="60" y1="170" x2="200" y2="50" stroke="#1e3a4f" strokeWidth="0.3" />
+        <line x1="60" y1="50" x2="200" y2="170" stroke="#1e3a4f" strokeWidth="0.3" />
+
+        {/* Vector 1: cyan upward-right */}
+        <line x1="130" y1="110" x2="180" y2="30" stroke="#5eead4" strokeWidth="2.5" />
+        <polygon points="180,30 174,42 186,42" fill="#5eead4" />
+        <text x="184" y="28" fill="#5eead4" fontSize="10" fontFamily="monospace">3, 6</text>
+
+        {/* Vector 2: teal-blue right */}
+        <line x1="130" y1="110" x2="230" y2="70" stroke="#38bdf8" strokeWidth="2.5" />
+        <polygon points="230,70 220,64 220,76" fill="#38bdf8" />
+        <text x="232" y="68" fill="#38bdf8" fontSize="10" fontFamily="monospace">6, 3</text>
+
+        {/* Vector 3: light cyan upward */}
+        <line x1="130" y1="110" x2="150" y2="35" stroke="#99f6e4" strokeWidth="2" />
+        <polygon points="150,35 145,47 155,47" fill="#99f6e4" />
+        <text x="153" y="32" fill="#99f6e4" fontSize="10" fontFamily="monospace">-3, 3</text>
+
+        {/* Vector 4: blue downward-left (negative) */}
+        <line x1="130" y1="110" x2="80" y2="150" stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4 3" />
+        <polygon points="80,150 86,140 74,140" fill="#94a3b8" />
+        <text x="55" y="158" fill="#94a3b8" fontSize="10" fontFamily="monospace">-3, -3</text>
+
+        {/* Parallelogram fill */}
+        <polygon points="130,110 180,30 230,70 180,150" fill="#5eead4" opacity="0.06" />
+        <polygon points="130,110 180,30 230,70" fill="#38bdf8" opacity="0.08" />
+
+        {/* Origin dot */}
+        <circle cx="130" cy="110" r="3" fill="#5eead4" />
+
+        {/* Axis labels */}
+        <text x="242" y="114" fill="#475569" fontSize="9" fontFamily="monospace">X</text>
+        <text x="132" y="16" fill="#475569" fontSize="9" fontFamily="monospace">Y</text>
+      </svg>
+    </div>
+
+    {/* Subtle gradient overlay */}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#0d1b2a] via-transparent to-[#0f2b3d] opacity-60 pointer-events-none" />
+  </div>
+);
 
 const ProjectsSection = () => {
   const projects = [
@@ -44,7 +112,7 @@ const ProjectsSection = () => {
         "Arquitetura baseada em componentes reutilizáveis e escaláveis"
       ],
       link: "https://matrixacademy.vercel.app/",
-      image: matrixAcademyImg,
+      hasHero: true,
     }
   ];
 
@@ -62,31 +130,15 @@ const ProjectsSection = () => {
 
         <div className="space-y-8">
           {projects.map((project, idx) => (
-            <Card key={idx} className="animate-fade-in shadow-elegant">
+            <Card key={idx} className="animate-fade-in shadow-elegant overflow-hidden">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold flex items-center gap-3">
                   <Code className="w-6 h-6 text-primary" />
                   {project.title}
-                  {project.link && (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      <Button variant="outline" size="sm" className="ml-auto gap-2">
-                        <ExternalLink className="w-4 h-4" />
-                        Ver Projeto
-                      </Button>
-                    </a>
-                  )}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                {project.image && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
-                    <img
-                      src={project.image}
-                      alt={`Screenshot do projeto ${project.title}`}
-                      className="w-full rounded-lg border shadow-sm object-cover max-h-80"
-                    />
-                  </a>
-                )}
+                {project.hasHero && <MatrixHero />}
 
                 <p className="text-muted-foreground leading-relaxed text-lg">
                   {project.description}
